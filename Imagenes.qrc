@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>barra.jpg</file>
+    <file>barrita.jpg</file>
+    <file>boton.jpg</file>
+    <file>fondo.jpg</file>
+  </qresource>
+</RCC>
