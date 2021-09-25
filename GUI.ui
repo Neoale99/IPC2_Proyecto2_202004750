@@ -96,7 +96,7 @@ background-image: url(:/newPrefix/barrita.jpg);</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>30</x>
        <y>25</y>
        <width>121</width>
        <height>31</height>
@@ -116,13 +116,16 @@ background-image: url(:/newPrefix/barrita.jpg);</string>
       <string notr="true">background-image: url(:/newPrefix/boton.jpg);</string>
      </property>
      <property name="text">
-      <string>        Producto</string>
+      <string>Producto</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>30</x>
        <y>70</y>
        <width>121</width>
        <height>22</height>
@@ -130,6 +133,76 @@ background-image: url(:/newPrefix/barrita.jpg);</string>
      </property>
      <property name="autoFillBackground">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>110</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/newPrefix/boton.jpg);</string>
+     </property>
+     <property name="text">
+      <string>Componentes</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>160</y>
+       <width>121</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>70</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Seleccionar</string>
      </property>
     </widget>
    </widget>
@@ -175,6 +248,7 @@ background-image: url(:/newPrefix/barrita.jpg);</string>
      <string>Cargar</string>
     </property>
     <addaction name="actionConfiguraci_n"/>
+    <addaction name="actionSimulacion"/>
    </widget>
    <widget class="QMenu" name="menuReportes">
     <property name="title">
@@ -182,18 +256,35 @@ background-image: url(:/newPrefix/barrita.jpg);</string>
     </property>
     <addaction name="actionReporte_simulaciones"/>
    </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="action_Que_busca_buen_hombre"/>
+   </widget>
    <addaction name="menuCargar"/>
    <addaction name="menuReportes"/>
+   <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionConfiguraci_n">
    <property name="text">
-    <string>Configuración</string>
+    <string>Configuracion</string>
    </property>
   </action>
   <action name="actionReporte_simulaciones">
    <property name="text">
     <string>Reporte simulaciones</string>
+   </property>
+  </action>
+  <action name="actionSimulacion">
+   <property name="text">
+    <string>Simulacion</string>
+   </property>
+  </action>
+  <action name="action_Que_busca_buen_hombre">
+   <property name="text">
+    <string>¿Que busca buen hombre? </string>
    </property>
   </action>
  </widget>
