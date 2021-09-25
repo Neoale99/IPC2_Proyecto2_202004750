@@ -23,42 +23,52 @@ class ventana(QMainWindow):
         self.ui.setupUi(self)
         self.show
         self.ui.actionConfiguraci_n.triggered.connect(self.abrirc)
-        self.ui.comboBox.addItem(Listacomp.Agregar())
+        self.ui.comboBox.currentIndexChanged.connect(self.elegir)
+        self.ui.action_Que_busca_buen_hombre.triggered.connect(self.datos)
     
     def abrirc(self):
         global datos
         ruta = QFileDialog.getOpenFileName(self,'abrir archivo','C:\\')
-        print(ruta)
         tree = et.parse(ruta[0])
         root = tree.getroot()
         for elemento in root: 
-            nombre = elemento.get('nombre')
-            for dim in elemento.iter('CantidadLineasProducción'):
-                cantidad = dim.text
-                for Lis in elemento.iter('ListadoLineasProduccion'):
-                    for Lineas in Lis.iter('LineaProduccion'):
-                        for cor in Lineas.iter('Numero'):
-                            Correlatif = cor.text
-                    
-                        for cant in Lineas.iter('CantidadComponentes'):
-                            cantcomp = cant.text
+            nombre = elemento.get('maquina')
+            #print(Nodoterreno.nombre)
+            
+            
+            for dim in elemento.iter('CantidadLineasProduccion'):
+                cantidad = elemento.text.strip()
+            for lptm in elemento.iter('ListadoLineasProduccion'):
+                print()
+            for lptm3 in elemento.iter('LineaProduccion'):
+                
+                for dim2 in lptm3.iter('Numero'):
+                    Correlatif = dim2.text.strip()
+                for dim2 in lptm3.iter('CantidadComponentes'):
+                    cantcomp = dim2.text.strip()
+                for dim2 in lptm3.iter('TiempoEnsamblaje'):
+                    Tiempo = dim2.text.strip()
+                Listalin.ingresar(cantidad,Correlatif,cantcomp,Tiempo)
+                
+            for lptm2 in elemento.iter('ListadoProductos'):
+                print("")
+            for lptm4 in elemento.iter('Producto'):
+                cantidad = lptm4.text.strip()
+                for dim3 in lptm4.iter('nombre'):
+                    nomme = dim3.text.strip()
+                for dim3 in lptm4.iter('elaboracion'):
+                    elab = dim3.text.strip()
+                Listacomp.ingresar(nomme,elab)     
 
-                        for TiE in Lineas.iter('TiempoEnsamblaje'):
-                            Tiempo = TiE.text
-
-                for Lisp in elemento.iter('ListadoProductos'):
-
-                    for Pr in Lisp.iter('Producto'):
-
-                        for nom in Pr.iter('nombre'):
-                            nomme = nom.text
-
-                        for cant in Pr.iter('elaboracion'):
-                            elab = cant.text
-            Listacomp.Agregar(nomme,elab)
-            Listalin.Agregar(cantidad,Correlatif,cantcomp,Tiempo)
+                   
+        self.ui.comboBox.addItems(Listacomp.Agregar())                    
+ 
+    def elegir(self):
+        comp = Listacomp.Comparar(self.ui.comboBox.itemText(self.ui.comboBox.currentIndex()))
+        self.ui.label_6.setText(comp)
     
-
+    def datos(self):
+        self.ui.msg.exec_()
 
 if __name__ == "__main__":
 

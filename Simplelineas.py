@@ -1,4 +1,5 @@
 from nodoLineas import *
+c = []
 class simpleLineas():
     def __init__(self):
         self.primero = None
@@ -15,11 +16,14 @@ class simpleLineas():
             aux.siguiente = nuevo
 
     def Agregar(self):
+        global c 
         aux = self.primero
         if aux is None:
             print()
         else:
             while aux is not None:
-                b = (aux.cantidad)
+                b = aux.cantidad
+                c.append(b)
+                print(c)
                 aux = aux.siguiente 
-                return(b)
+        return(c)

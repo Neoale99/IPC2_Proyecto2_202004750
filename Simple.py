@@ -1,4 +1,5 @@
 from nodo import *
+c = []
 class simple():
     def __init__(self):
         self.primero = None
@@ -17,9 +18,28 @@ class simple():
     def Agregar(self):
         aux = self.primero
         if aux is None:
-            print()
+            print("Mama esto no jala")
         else:
             while aux is not None:
                 b = (aux.pro)
+                c.append(b)
                 aux = aux.siguiente 
-                return(b)
+        return(c)        
+    
+    def Comparar(self,nombre):
+        aux = self.primero
+
+        if aux is None:
+            print("Mama esto no jala")
+            return(None)
+        else:
+            while aux is not None:
+                if aux.pro == nombre:
+                    print(aux.elaboracion)
+                    c = aux.elaboracion
+                    
+                    return(c)
+                else : 
+                    aux = aux.siguiente
+                
+                        
