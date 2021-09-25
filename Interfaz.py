@@ -123,9 +123,26 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuCargar.menuAction())
         self.menubar.addAction(self.menuReportes.menuAction())
         self.menubar.addAction(self.menuAyuda.menuAction())
-
+        self.label_6.setWordWrap(True)
         self.retranslateUi(MainWindow)
+        self.msg = QtWidgets.QMessageBox()
+        self.msg.setWindowTitle("Datos")
+        self.msg.setText("""   ╔ Datos del estudiante:
+   ║ Nombre: Pedro Alejandro Zetino Páez                          
+   ║ Edad: 19                                                     
+   ║ Carnet: 202004750                                                
+   ║ Aflicción: No he ganado inter 1                                   
+   ║ ♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠
+   ╠ Datos de la aplicación: 
+   ║ Esta aplicación fue desarrollada para                   
+   ║ manejar la máquina ensambladora creada                   
+   ║ por Digital Intelligence, S.A y lograr                   
+   ║ un manejo eficiente de la misma                          
+   
+        """)
+        
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
