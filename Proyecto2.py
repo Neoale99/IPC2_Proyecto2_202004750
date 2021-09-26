@@ -1,19 +1,23 @@
+
 from os import error
 from PyQt5 import QtWidgets
 from nodo import *
+from NodoProces import*
+from Simpleproce import *
 from Simple import *
 from nodoLineas import*
 from Simplelineas import*
 from Interfaz import Ui_MainWindow
 from PyQt5.QtGui import QPixmap
-from os import startfile
+from os import startfile, system
+import re as re 
 import sys
 import xml.etree.ElementTree as et  
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QAction, QMessageBox, QDialog
 datos = ""
 Listacomp = simple()
 Listalin = simpleLineas()
-
+Listaproc = simpleproce()
 class ventana(QMainWindow):
     #Métodos
     def __init__(self):
@@ -25,7 +29,7 @@ class ventana(QMainWindow):
         self.ui.actionConfiguraci_n.triggered.connect(self.abrirc)
         self.ui.comboBox.currentIndexChanged.connect(self.elegir)
         self.ui.action_Que_busca_buen_hombre.triggered.connect(self.datos)
-    
+        self.ui.actionReporte_simulaciones.triggered.connect(self.graph)
     def abrirc(self):
         global datos
         ruta = QFileDialog.getOpenFileName(self,'abrir archivo','C:\\')
@@ -70,6 +74,71 @@ class ventana(QMainWindow):
     def datos(self):
         self.ui.msg.exec_()
 
+    def graph(self):
+        comp = Listacomp.Comparar(self.ui.comboBox.itemText(self.ui.comboBox.currentIndex()))
+        x = comp.replace("p","")
+  
+        separar = re.compile("L[0-9]+C[0-9]+")
+        
+        paso = separar.search(x)
+        i = 0
+        b = self.ui.comboBox.itemText(self.ui.comboBox.currentIndex())
+        a = b.replace(" ","")
+
+        print(a)
+        graphviz='''
+        digraph L{
+        node[shape=cylinder fillcolor="#FFEDBB" style =filled]
+    
+        subgraph cluster_p{
+        fontsize = 50
+        label= " '''+a+''' "
+        bgcolor = "lavender"
+        edge[dir = "one"]
+
+
+        '''
+        try:
+            for i in  range(len(x)):
+                
+                if paso.group() != None:
+                    i +=1
+                    paso = separar.search(x)
+                    si = paso.group()
+                    x = x.replace(si,"")
+                    Listaproc.ingresar(si)
+                
+                graphviz +="nodo1_"+str(i)+"[label= "+Listaproc.Agregar()+",fillcolor=cyan,group=1]\n"
+                
+        except:
+            print()  
+
+        graphviz +=  "{rank=same;"
+        while i>1:
+            if i == 2:
+                i-=1
+                graphviz += "nodo1_"+str(i)+"}"
+                
+            else: 
+                i -=1   
+                graphviz+="nodo1_"+str(i)+"->"
+                
+                
+        
+        graphi = """
+                   
+            }
+
+        }
+        """
+        graphviz += "\n"+graphi
+        f= open(''+a+'.dot','w')
+        f.write(graphviz)
+        f.close()
+        system('dot -Tpng '+a+'.dot -o '+a+'.png')
+        system('cd ./'+a+'.png')
+        startfile(''+a+'.png')
+        
 if __name__ == "__main__":
 
     app=QApplication(sys.argv)

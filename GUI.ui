@@ -24,13 +24,16 @@
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-image: url(:/newPrefix/fondo.jpg);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -180,10 +183,16 @@ background-image: url(:/newPrefix/barrita.jpg);</string>
       <bool>true</bool>
      </property>
      <property name="text">
-      <string/>
+      <string>Probemos ahora a meter más de una fila de esto</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton">
