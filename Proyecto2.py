@@ -117,14 +117,16 @@ class ventana(QMainWindow):
             print()  
 
         graphviz +=  "{rank=same;"
-        while i>1:
-            if i == 2:
-                i-=1
-                graphviz += "nodo1_"+str(i)+"}"
+        u = 0
+        while u<i-1:
+            u += 1
+            if u == i-1:
+                
+                graphviz += "nodo1_"+str(u)+"}"
                 
             else: 
-                i -=1   
-                graphviz+="nodo1_"+str(i)+"->"
+                  
+                graphviz+="nodo1_"+str(u)+"->"
                 
                 
         
