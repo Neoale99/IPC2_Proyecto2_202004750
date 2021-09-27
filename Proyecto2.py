@@ -1,8 +1,9 @@
-
 from os import error
+from simplesim import simplesim
 from PyQt5 import QtWidgets
 from nodo import *
 from NodoProces import*
+from nodosim import *
 from Simpleproce import *
 from Simple import *
 from nodoLineas import*
@@ -15,6 +16,7 @@ import sys
 import xml.etree.ElementTree as et  
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QAction, QMessageBox, QDialog
 datos = ""
+listasim = simplesim()
 Listacomp = simple()
 Listalin = simpleLineas()
 Listaproc = simpleproce()
@@ -27,6 +29,7 @@ class ventana(QMainWindow):
         self.ui.setupUi(self)
         self.show
         self.ui.actionConfiguraci_n.triggered.connect(self.abrirc)
+        self.ui.actionSimulacion.triggered.connect(self.simular)
         self.ui.comboBox.currentIndexChanged.connect(self.elegir)
         self.ui.action_Que_busca_buen_hombre.triggered.connect(self.datos)
         self.ui.actionReporte_simulaciones.triggered.connect(self.graph)
@@ -138,7 +141,25 @@ class ventana(QMainWindow):
         system('dot -Tpng '+a+'.dot -o '+a+'.png')
         system('cd ./'+a+'.png')
         startfile(''+a+'.png')
-        
+    
+    def simular(self):
+
+        ruta = QFileDialog.getOpenFileName(self,'abrir archivo','C:\\')
+        tree = et.parse(ruta[0])
+        root = tree.getroot()
+        for elemento in root: 
+            nombre = elemento.get('maquina')
+            #print(Nodoterreno.nombre)
+            
+            
+            for dim in elemento.iter('Nombre'):
+                cantidad = dim.text.replace(" ","")
+            for lptm in elemento.iter('ListadoProductos'):
+                simuladores = lptm.text.replace(" ","")
+                for prr in lptm.iter('Producto'):
+                    prod = prr.text.replace(" ","")
+                    listasim.ingresar(cantidad.strip(),prod.strip())
+
 if __name__ == "__main__":
 
     app=QApplication(sys.argv)
