@@ -24,6 +24,5 @@ class simpleLineas():
             while aux is not None:
                 b = aux.cantidad
                 c.append(b)
-                print(c)
                 aux = aux.siguiente 
         return(c)

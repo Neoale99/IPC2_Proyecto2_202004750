@@ -183,7 +183,7 @@ background-image: url(:/newPrefix/barrita.jpg);</string>
       <bool>true</bool>
      </property>
      <property name="text">
-      <string>Probemos ahora a meter más de una fila de esto</string>
+      <string/>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
